@@ -34,4 +34,14 @@ describe ITuner, "controls" do
     
   end
 
+  describe "#library" do
+    
+    it "returns the Library playlist" do
+      @library = @itunes.library
+      @library.should be_kind_of(ITuner::Playlist)
+      @library.name.should == "Library"
+    end
+    
+  end
+  
 end

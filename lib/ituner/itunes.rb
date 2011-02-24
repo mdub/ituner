@@ -1,5 +1,6 @@
 require 'appscript'
 require 'ituner/tracks'
+require 'ituner/playlists'
 
 module ITuner
   
@@ -43,6 +44,14 @@ module ITuner
 
     def current_track
       Track.new(@app.current_track.get)
+    end
+    
+    def library
+      playlists["Library"]
+    end
+
+    def playlists
+      Playlists.new(@app.playlists)
     end
     
   end
