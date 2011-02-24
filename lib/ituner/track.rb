@@ -10,6 +10,10 @@ module ITuner
       @app_track.name.get
     end
     
+    def play
+      @app_track.play
+    end
+    
   end
 
 end

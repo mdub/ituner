@@ -9,6 +9,10 @@ module ITuner
     def name
       @app_playlist.name.get
     end
+  
+    def tracks
+      Collection.new(@app_playlist.tracks, Track)
+    end
     
   end
   

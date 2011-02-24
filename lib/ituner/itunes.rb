@@ -1,6 +1,7 @@
 require 'appscript'
-require 'ituner/tracks'
-require 'ituner/playlists'
+require 'ituner/collection'
+require 'ituner/playlist'
+require 'ituner/track'
 
 module ITuner
   
@@ -51,7 +52,7 @@ module ITuner
     end
 
     def playlists
-      Playlists.new(@app.playlists)
+      Collection.new(@app.playlists, Playlist)
     end
     
   end
