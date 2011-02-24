@@ -1,3 +1,6 @@
+require 'appscript'
+require 'ituner/tracks'
+
 module ITuner
   
   class << self
@@ -11,12 +14,35 @@ module ITuner
   class ITunes
     
     def initialize
-      require 'appscript'
       @app = Appscript.app("iTunes.app")
     end
 
     def running?
       @app.is_running?
+    end
+    
+    def play
+      @app.play
+    end
+
+    def pause
+      @app.pause
+    end
+
+    def stop
+      @app.stop
+    end
+
+    def state
+      @app.player_state.get
+    end
+
+    def playing?; state == :playing; end
+    def paused?;  state == :paused;  end
+    def stopped?; state == :stopped; end
+
+    def current_track
+      Track.new(@app.current_track.get)
     end
     
   end

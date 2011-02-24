@@ -1,5 +1,1 @@
-module ITuner
-
-
-
-end
+require 'ituner/itunes'
