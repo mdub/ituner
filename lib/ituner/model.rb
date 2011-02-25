@@ -2,12 +2,10 @@ module ITuner
   
   class Model
     
-    def initialize(app, app_object)
-      @app = app
+    def initialize(app_object)
       @app_object = app_object
     end
 
-    attr_accessor :app
     attr_accessor :app_object
 
     class << self
@@ -20,7 +18,7 @@ module ITuner
 
       def collection(name, options = {})
         define_method(name) do
-          Collection.new(app, app_object.send(name), options[:of])
+          Collection.new(app_object.send(name), options[:of])
         end
       end
       

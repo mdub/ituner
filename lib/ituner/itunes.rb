@@ -6,37 +6,29 @@ require 'ituner/track'
 module ITuner
   
   class << self
+    
+    def itunes_app
+      @itunes_app ||= Appscript.app("iTunes")
+    end
 
     def itunes
-      @itunes ||= ITunes.new
+      @itunes ||= ITunes.new(itunes_app)
     end
     
   end
   
   class ITunes < Model
     
-    def initialize
-      @app = Appscript.app("iTunes.app")
-    end
-
     def running?
-      @app.is_running?
+      app.is_running?
     end
     
-    def play
-      @app.play
-    end
-
-    def pause
-      @app.pause
-    end
-
-    def stop
-      @app.stop
-    end
+    action :play
+    action :pause
+    action :stop
 
     def state
-      @app.player_state.get
+      app.player_state.get
     end
 
     def playing?; state == :playing; end
@@ -44,15 +36,19 @@ module ITuner
     def stopped?; state == :stopped; end
 
     def current_track
-      Track.new(@app, @app.current_track.get)
+      Track.new(app.current_track.get)
     end
     
     def library
       playlists["Library"]
     end
 
-    def playlists
-      Collection.new(@app, @app.playlists, Playlist)
+    collection :playlists, :of => Playlist
+
+    private
+    
+    def app
+      app_object
     end
     
   end
