@@ -13,7 +13,7 @@ module ITuner
     
   end
   
-  class ITunes
+  class ITunes < Model
     
     def initialize
       @app = Appscript.app("iTunes.app")

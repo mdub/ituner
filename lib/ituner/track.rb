@@ -1,26 +1,14 @@
+require 'ituner/model'
+
 module ITuner
 
-  class Track
+  class Track < Model
 
-    def initialize(app_track)
-      @app_track = app_track
-    end
+    property :name
+    property :artist
+    property :album
 
-    def name
-      @app_track.name.get
-    end
-    
-    def play
-      @app_track.play
-    end
-
-    def artist
-      @app_track.artist.get
-    end
-
-    def album
-      @app_track.album.get
-    end
+    action :play
     
   end
 
