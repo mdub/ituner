@@ -2,7 +2,8 @@ module ITuner
   
   class Collection
     
-    def initialize(app_collection, item_class)
+    def initialize(app, app_collection, item_class)
+      @app = app
       @app_collection = app_collection
       @item_class = item_class
     end
@@ -37,7 +38,7 @@ module ITuner
     private 
   
     def wrap_item(item)
-      @item_class.new(item) if item
+      @item_class.new(@app, item) if item
     end
     
   end

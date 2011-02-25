@@ -44,7 +44,7 @@ module ITuner
     def stopped?; state == :stopped; end
 
     def current_track
-      Track.new(@app.current_track.get)
+      Track.new(@app, @app.current_track.get)
     end
     
     def library
@@ -52,7 +52,7 @@ module ITuner
     end
 
     def playlists
-      Collection.new(@app.playlists, Playlist)
+      Collection.new(@app, @app.playlists, Playlist)
     end
     
   end
