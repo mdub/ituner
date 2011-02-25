@@ -13,6 +13,14 @@ module ITuner
     def play
       @app_track.play
     end
+
+    def artist
+      @app_track.artist.get
+    end
+
+    def album
+      @app_track.album.get
+    end
     
   end
 
