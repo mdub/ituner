@@ -12,7 +12,7 @@ module ITuner
     end
 
     def itunes
-      @itunes ||= ITunes.new(itunes_app)
+      ITunes.new(itunes_app)
     end
     
   end
