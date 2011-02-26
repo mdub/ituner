@@ -27,24 +27,24 @@ describe ITuner::Playlist do
     end
     
   end
+  
+  describe "#add" do
+    
+    before do 
+      @playlist = ITuner.itunes.playlists.create(:name => "Test")
+      @track = ITuner.itunes.music.tracks.first
+    end
 
-  describe ".create" do
-
-    before do
-      ITuner.itunes.playlists["XYZ"].delete rescue nil
+    after do 
+      @playlist.delete
     end
     
-    it "creates a new playlist" do
-      xyz = ITuner.itunes.playlists.create(:name => "XYZ")
-      xyz.should be_kind_of(ITuner::Playlist)
-      xyz.name.should == "XYZ"
-      ITuner.itunes.playlists["XYZ"].should_not be_nil
+    it "add a track to the playlist" do
+      @playlist.add(@track)
+      @playlist.tracks.size.should == 1
     end
-    
-    after do
-      ITuner.itunes.playlists["XYZ"].delete rescue nil
-    end
-    
+  
   end
+  
   
 end

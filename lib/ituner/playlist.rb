@@ -14,7 +14,11 @@ module ITuner
         Track.new(app_track)
       end
     end
-    
+        
+    def add(track)
+      ITuner.itunes_app.duplicate(track.app_object, :to => app_object)
+    end
+
   end
   
 end

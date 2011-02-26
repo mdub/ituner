@@ -31,5 +31,27 @@ describe ITuner::Collection do
     end
     @count.should == @collection.size
   end
+
+  it "is Enumerable" do
+    @collection.should be_kind_of(Enumerable)
+  end
   
+  describe "#create" do
+
+    before do
+      @collection["XYZ"].delete rescue nil
+    end
+    
+    it "creates a new item" do
+      xyz = @collection.create(:name => "XYZ")
+      xyz.should be_kind_of(ITuner::Playlist)
+      xyz.name.should == "XYZ"
+    end
+    
+    after do
+      @collection["XYZ"].delete rescue nil
+    end
+    
+  end
+
 end

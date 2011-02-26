@@ -38,6 +38,8 @@ module ITuner
       end
     end
     
+    include Enumerable
+    
     def first
       wrap_item(app_collection.first.get)
     end
