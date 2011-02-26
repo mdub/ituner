@@ -7,7 +7,7 @@ module ITuner
     
     property :name
     
-    collection :tracks, :of => Track
+    collection :tracks
     
     def search(name, only = :all)
       ITuner.itunes_app.search(app_object, :for => name, :only => only).map do |app_track|

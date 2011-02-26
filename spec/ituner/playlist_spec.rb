@@ -27,5 +27,24 @@ describe ITuner::Playlist do
     end
     
   end
+
+  describe ".create" do
+
+    before do
+      ITuner.itunes.playlists["XYZ"].delete rescue nil
+    end
+    
+    it "creates a new playlist" do
+      xyz = ITuner.itunes.playlists.create(:name => "XYZ")
+      xyz.should be_kind_of(ITuner::Playlist)
+      xyz.name.should == "XYZ"
+      ITuner.itunes.playlists["XYZ"].should_not be_nil
+    end
+    
+    after do
+      ITuner.itunes.playlists["XYZ"].delete rescue nil
+    end
+    
+  end
   
 end

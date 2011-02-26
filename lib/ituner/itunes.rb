@@ -39,7 +39,7 @@ module ITuner
       Track.new(app.current_track.get)
     end
     
-    collection :playlists, :of => Playlist
+    collection :playlists
 
     def library
       playlists["Library"]
