@@ -39,11 +39,15 @@ module ITuner
       Track.new(app.current_track.get)
     end
     
+    collection :playlists, :of => Playlist
+
     def library
       playlists["Library"]
     end
 
-    collection :playlists, :of => Playlist
+    def music
+      playlists["Music"]
+    end
 
     private
     
