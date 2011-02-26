@@ -20,6 +20,11 @@ describe ITuner::Playlist do
       @playlist.search("FreeLoader").map(&:name).should include("Freddie Freeloader")
       @playlist.search("Nirvana").map(&:name).should include("Smells Like Teen Spirit")
     end
+
+    it "can be restricted" do
+      @playlist.search("Nirvana", :artists).map(&:name).should include("Smells Like Teen Spirit")
+      @playlist.search("Nirvana", :songs).map(&:name).should_not include("Smells Like Teen Spirit")
+    end
     
   end
   
