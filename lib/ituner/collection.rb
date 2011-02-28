@@ -16,7 +16,7 @@ module ITuner
     attr_reader :item_type
     
     def [](index)
-      wrap_item(app_collection[translate_index(index)])
+      wrap_item(app_collection[translate_index(index)].get)
     end
 
     def translate_index(index)
