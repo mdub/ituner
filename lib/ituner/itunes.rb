@@ -12,6 +12,7 @@ module ITuner
     end
 
     def itunes
+      itunes_app.launch
       ITunes.new(itunes_app)
     end
     
