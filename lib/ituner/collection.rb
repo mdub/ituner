@@ -15,9 +15,17 @@ module ITuner
     attr_reader :item_class
     attr_reader :item_type
     
-    def [](index)
-      wrap_item(app_collection[translate_index(index)].get)
+    def get(index)
+      app_reference = app_collection[translate_index(index)]
+      app_item = begin
+        app_reference.get
+      rescue Appscript::CommandError
+        return nil
+      end
+      wrap_item(app_item)
     end
+    
+    alias :[] :get
 
     def translate_index(index)
       case index
