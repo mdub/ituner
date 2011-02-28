@@ -38,6 +38,8 @@ module ITuner
 
     def current_track
       Track.new(app.current_track.get)
+    rescue Appscript::CommandError
+      nil
     end
     
     collection :playlists

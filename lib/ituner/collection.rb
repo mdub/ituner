@@ -17,12 +17,7 @@ module ITuner
     
     def get(index)
       app_reference = app_collection[translate_index(index)]
-      app_item = begin
-        app_reference.get
-      rescue Appscript::CommandError
-        return nil
-      end
-      wrap_item(app_item)
+      wrap_item(resolve_reference(app_reference))
     end
     
     alias :[] :get
@@ -57,6 +52,12 @@ module ITuner
     end
     
     private 
+    
+    def resolve_reference(ref)
+      ref.get
+    rescue Appscript::CommandError
+      return nil
+    end
   
     def wrap_item(item)
       item_class.new(item) if item
