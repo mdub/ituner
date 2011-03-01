@@ -14,17 +14,17 @@ module ITuner
     
     class << self
     
-      def property(name)
+      def property(name, app_name = name)
         define_method(name) do
-          app_object.send(name).get
+          app_object.send(app_name).get
         end
       end
 
-      def collection(name)
+      def collection(name, app_name = name)
         item_type = name.to_s.sub(/s$/,'').to_sym
         item_class = ITuner.const_get(item_type.to_s.capitalize)
         define_method(name) do
-          Collection.new(app_object.send(name), item_type, item_class)
+          Collection.new(app_object.send(app_name), item_type, item_class)
         end
       end
       
