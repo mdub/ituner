@@ -11,7 +11,16 @@ module ITuner
     def ==(other)
       other && (app_object == other.app_object)
     end
-    
+        
+    def inspect
+      s = "{" + self.class.name
+      if respond_to?(:name)
+        s += " #{name.inspect}"
+      end
+      s += "}"
+      s
+    end
+
     class << self
     
       def property(name, app_name = name)

@@ -51,7 +51,6 @@ describe ITuner::Collection do
     
   end
   
-  
   it "can be enumerated" do
     @collection.should respond_to(:each)
 
@@ -82,6 +81,30 @@ describe ITuner::Collection do
       @collection["XYZ"].delete rescue nil
     end
     
+  end
+  
+  describe "#inspect" do
+    
+    it "makes the collection looks like an array" do
+      @collection.inspect.should =~ /^\[.*\]$/
+    end
+
+    it "invokes #inspect on each element" do
+      stub(@collection).each { |block| [1,2,3].each(&block) }
+      stub(@collection).size { 3 }
+      @collection.inspect.should == "[1, 2, 3]"
+    end
+
+    context "when the collection contains more than 10 elements" do
+
+      it "invokes #inspect on each element" do
+        stub(@collection).each { |block| (1..20).each(&block) }
+        stub(@collection).size { 20 }
+        @collection.inspect.should == "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, (and 10 more)]"
+      end
+
+    end
+  
   end
 
 end

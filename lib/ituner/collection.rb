@@ -34,6 +34,10 @@ module ITuner
     def size
       app_collection.get.size
     end
+    
+    def empty?
+      size == 0
+    end
 
     def each
       app_collection.get.each do |item|
@@ -49,6 +53,14 @@ module ITuner
 
     def create(properties = {})
       wrap_item(ITuner.itunes_app.make(:new => item_type, :with_properties => properties))
+    end
+    
+    def inspect
+      s = take(10).inspect
+      if size > 10
+        s[-1,1] = ", (and #{size - 10} more)]" 
+      end
+      s
     end
     
     private 
