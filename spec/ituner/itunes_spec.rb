@@ -44,4 +44,17 @@ describe ITuner, "controls" do
     
   end
   
+  describe "#sources" do
+
+    it "returns the media sources" do
+      @sources = @itunes.sources
+      @sources.each do |source|
+        source.should be_kind_of(ITuner::Source)
+      end
+      @sources[0].name.should == "Library"
+      @sources[1].name.should == "Radio"
+    end
+
+  end
+  
 end

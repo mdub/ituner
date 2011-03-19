@@ -1,5 +1,6 @@
 require 'appscript'
 require 'ituner/collection'
+require 'ituner/source'
 require 'ituner/playlist'
 require 'ituner/track'
 
@@ -52,6 +53,8 @@ module ITuner
       playlists["Music"]
     end
 
+    collection :sources
+    
     private
     
     def app
