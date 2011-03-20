@@ -45,15 +45,15 @@ module ITuner
     
     collection :playlists
 
-    def library
-      playlists["Library"]
-    end
-
     def music
       playlists["Music"]
     end
 
     collection :sources
+
+    def library
+      sources["Library"]
+    end
     
     private
     

@@ -33,16 +33,6 @@ describe ITuner, "controls" do
     end
     
   end
-
-  describe "#library" do
-    
-    it "returns the Library playlist" do
-      @library = @itunes.library
-      @library.should be_kind_of(ITuner::Playlist)
-      @library.name.should == "Library"
-    end
-    
-  end
   
   describe "#sources" do
 
@@ -55,6 +45,16 @@ describe ITuner, "controls" do
       @sources[1].name.should == "Radio"
     end
 
+  end
+
+  describe "#library" do
+    
+    it "returns the Library source" do
+      @library = @itunes.library
+      @library.should be_kind_of(ITuner::Source)
+      @library.name.should == "Library"
+    end
+    
   end
   
 end
