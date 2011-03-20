@@ -51,6 +51,10 @@ module ITuner
       wrap_item(app_collection.first.get)
     end
 
+    def last
+      wrap_item(app_collection.last.get)
+    end
+
     def create(properties = {})
       wrap_item(ITuner.itunes_app.make(:new => item_type, :with_properties => properties))
     end
