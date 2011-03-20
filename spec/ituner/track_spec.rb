@@ -24,9 +24,22 @@ describe ITuner::Track do
   end
   
   it "can be played" do
-    @itunes.stop
     @track.play
-    @itunes.should be_playing
+  end
+  
+  describe "#play" do
+
+    before do
+      @itunes.stop
+    end
+
+    it "plays the song (and then stops)" do
+      stub.proxy(@track.app_object).play
+      @track.play
+      @itunes.should be_playing
+      @track.app_object.should have_received.play(:once => true)
+    end
+    
   end
   
   describe ".find_by_uid" do

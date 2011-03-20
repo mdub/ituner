@@ -29,7 +29,9 @@ module ITuner
       ITuner.itunes_app.duplicate(track.app_object, :to => app_object)
     end
 
-    action :play
+    def play
+      app_object.play(:once => true)
+    end
 
   end
   

@@ -10,7 +10,9 @@ module ITuner
 
     property :uid, :database_ID
     
-    action :play
+    def play
+      app_object.play(:once => true)
+    end
 
     class << self
 
@@ -19,7 +21,7 @@ module ITuner
       def find_by_uid(uid)
         app_track = ITuner.itunes_app.tracks[its.database_ID.eq(uid)].first.get
         Track.new(app_track)
-      rescue Appscript::CommandError
+      rescue CommandError
         nil
       end
       

@@ -45,7 +45,7 @@ describe ITuner::Playlist do
     end
   
   end
-  
+
   describe "#clear" do
 
     before do 
