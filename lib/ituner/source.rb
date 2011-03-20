@@ -8,7 +8,11 @@ module ITuner
     property :name
     
     collection :playlists
-    
+
+    def music
+      playlists["Music"]
+    end
+        
   end
   
 end

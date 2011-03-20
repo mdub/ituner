@@ -47,6 +47,8 @@ module ITuner
 
     action :delete
     
+    property :kind
+    
   end
   
 end
