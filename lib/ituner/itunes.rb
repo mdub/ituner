@@ -42,17 +42,19 @@ module ITuner
     rescue Appscript::CommandError
       nil
     end
-    
-    collection :playlists
-
-    def music
-      playlists["Music"]
-    end
 
     collection :sources
 
     def library
       sources["Library"]
+    end
+    
+    def playlists
+      library.playlists
+    end
+
+    def music
+      playlists["Music"]
     end
     
     private

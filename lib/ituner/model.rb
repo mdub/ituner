@@ -29,11 +29,11 @@ module ITuner
         end
       end
 
-      def collection(name, app_name = name)
+      def collection(name, app_name = name, &block)
         item_type = name.to_s.sub(/s$/,'').to_sym
         item_class = ITuner.const_get(item_type.to_s.capitalize)
         define_method(name) do
-          Collection.new(app_object.send(app_name), item_type, item_class)
+          Collection.new(app_object.send(app_name), item_type, item_class, &block)
         end
       end
       

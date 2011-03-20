@@ -7,7 +7,7 @@ module ITuner
       @item_type = item_type
       @item_class = item_class
       if block
-        self.class.class_eval(&block)
+        self.extend(Module.new(&block))
       end
     end
     

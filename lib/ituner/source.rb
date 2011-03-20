@@ -7,7 +7,14 @@ module ITuner
     
     property :name
     
-    collection :playlists
+    collection :playlists do
+      
+      def find_or_create(name)
+        get(name) || create(:name => name)
+      end
+      
+    end
+    
     collection :tracks
 
     def music
