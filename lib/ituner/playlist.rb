@@ -7,7 +7,17 @@ module ITuner
     
     property :name
     
-    collection :tracks
+    collection :tracks do
+
+      def clear
+        app_collection.delete
+      end
+
+    end
+
+    def clear
+      tracks.clear
+    end
     
     def search(name, only = :all)
       ITuner.itunes_app.search(app_object, :for => name, :only => only).map do |app_track|
@@ -20,7 +30,7 @@ module ITuner
     end
 
     action :play
-    
+
   end
   
 end

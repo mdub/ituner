@@ -37,9 +37,9 @@ module ITuner
         end
       end
       
-      def action(name)
+      def action(name, app_name = name)
         define_method(name) do |*args|
-          app_object.send(name, *args)
+          app_object.send(app_name, *args)
         end
       end
       

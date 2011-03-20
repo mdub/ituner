@@ -46,4 +46,25 @@ describe ITuner::Playlist do
   
   end
   
+  describe "#clear" do
+
+    before do 
+      @playlist = ITuner.itunes.playlists.create(:name => "Test")
+    end
+    
+    after do 
+      @playlist.delete
+    end
+
+    it "removes all tracks" do 
+      ITuner.itunes.music.tracks.take(3).each do |track|
+        @playlist.add(track)
+      end
+      @playlist.tracks.size.should == 3
+      @playlist.clear
+      @playlist.tracks.size.should == 0
+    end
+    
+  end
+  
 end
