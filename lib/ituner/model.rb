@@ -29,7 +29,15 @@ module ITuner
         end
       end
 
-      def collection(name, app_name = name, &block)
+      def belongs_to(name, app_name)
+        define_method(name) do
+          parent_class = ITuner.const_get(name.to_s.capitalize)
+          app_parent = app_object.send(app_name).get
+          parent_class.new(app_parent) if app_parent
+        end
+      end
+      
+      def has_many(name, app_name = name, &block)
         item_type = name.to_s.sub(/s$/,'').to_sym
         item_class = ITuner.const_get(item_type.to_s.capitalize)
         define_method(name) do

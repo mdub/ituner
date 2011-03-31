@@ -4,6 +4,8 @@ module ITuner
 
   class Track < Model
 
+    belongs_to :playlist, :container
+
     property :name
     property :artist
     property :album

@@ -6,8 +6,8 @@ module ITuner
   class Source < Model
     
     property :name
-    
-    collection :playlists do
+
+    has_many :playlists do
       
       def find_or_create(name)
         get(name) || create(:name => name)
@@ -23,7 +23,7 @@ module ITuner
       main_playlist.search(*args)
     end
     
-    collection :tracks
+    has_many :tracks
 
     def music
       playlists["Music"]

@@ -22,7 +22,15 @@ describe ITuner::Track do
   it "has a uid" do
     @track.uid.should be_kind_of(Fixnum)
   end
-  
+
+  describe "#playlist" do
+    
+    it "returns the containing playlist" do
+      @track.playlist.should be_kind_of(ITuner::Playlist)
+    end
+    
+  end
+
   it "can be played" do
     @track.play
   end

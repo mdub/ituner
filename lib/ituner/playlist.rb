@@ -1,13 +1,16 @@
 require 'ituner/model'
 require 'ituner/track'
+require 'ituner/playlist'
 
 module ITuner
   
   class Playlist < Model
     
-    property :name
+    belongs_to :source, :container
     
-    collection :tracks do
+    property :name
+
+    has_many :tracks do
 
       def clear
         app_collection.delete

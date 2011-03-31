@@ -14,6 +14,15 @@ describe ITuner::Playlist do
     @playlist.tracks.should be_kind_of(ITuner::Collection)
   end
   
+  describe "#source" do
+    
+    it "returns the parent source" do
+      @playlist.source.should be_kind_of(ITuner::Source)
+      @playlist.source.name.should == "Library"
+    end
+    
+  end
+  
   describe "#search" do
     
     it "returns matching tracks" do

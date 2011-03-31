@@ -43,7 +43,7 @@ module ITuner
       nil
     end
 
-    collection :sources
+    has_many :sources
 
     def library
       sources["Library"]
