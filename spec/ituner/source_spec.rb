@@ -45,4 +45,21 @@ describe ITuner::Source do
     
   end
 
+  describe "#main_playlist" do
+    
+    it "returns the main playlist" do
+      @source.main_playlist.should be_kind_of(ITuner::Playlist)
+      @source.main_playlist.name.should == @source.name
+    end
+    
+  end
+  
+  describe "#search" do
+
+    it "returns matching tracks" do
+      @source.search("Nirvana").map(&:name).should include("Smells Like Teen Spirit")
+    end
+
+  end
+
 end

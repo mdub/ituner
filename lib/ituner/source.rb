@@ -15,6 +15,14 @@ module ITuner
       
     end
     
+    def main_playlist
+      playlists.detect { |playlist| playlist.name == self.name }
+    end
+    
+    def search(*args)
+      main_playlist.search(*args)
+    end
+    
     collection :tracks
 
     def music
